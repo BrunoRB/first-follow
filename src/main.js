@@ -19,8 +19,6 @@ var firstFollow = (function() {
         // remove spaces, filter empty lines, and break the rules into (production, derivations)
         return grammar.split(/;|\n/).map(function(line) {
             return line.trim();
-        }).filter(function(line) {
-            return line;
         }).map(function(rule) {
             var data = rule.split(/->|→/);
             if (data.length < 2 || !data[0]) {
