@@ -133,7 +133,7 @@ var firstFollow = (function() {
                         }
                         else {
                             if (index === 0 || addEpsilon) {
-                                var fSet = that.firstSet[derivation] || {};
+                                var fSet = that.firstSet[derivation] ;
 
                                 // only add epsilon to firt(X) if epsilon is in all k for X -> Y1, Y2...Yk
                                 addEpsilon = '' in fSet;
@@ -183,7 +183,7 @@ var firstFollow = (function() {
                     if (addEpsilon) {
                         that.addToFirstSet(symbol, '');
                     }
-                
+
             });
         // we stop iterating and consider that the sets are complete when after a iteration nothing was added to them.
         } while(this._changed);
