@@ -122,10 +122,8 @@ var firstFollow = (function() {
                 var symbol = prod.symbol;
                 var derivationList = prod.derivation;
 
-                if (!that.isNonTerminal(symbol)) {
-                    that.addToFirstSet(symbol, symbol);
-                }
-                else {
+
+
                     // set to true when the first derivation has epsilon in its first set,
                     // it remains true as long as the subsequent derivations also contain '' in their first sets.
                     var addEpsilon = false;
@@ -185,7 +183,7 @@ var firstFollow = (function() {
                     if (addEpsilon) {
                         that.addToFirstSet(symbol, '');
                     }
-                }
+                
             });
         // we stop iterating and consider that the sets are complete when after a iteration nothing was added to them.
         } while(this._changed);
