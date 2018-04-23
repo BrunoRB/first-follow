@@ -41,7 +41,6 @@ var firstFollow = (function() {
 
     var Grammar = function(str) {
         var that = this;
-        this.grammar = str;
         this.productionList = GetProductions(str);
         if (!this.productionList.length) {
             throw 'Empty grammar';
