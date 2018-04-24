@@ -19,8 +19,6 @@ var firstFollow = (function() {
         // remove spaces, filter empty lines, and break the rules into (production, derivations)
         return grammar.split(/;|\n/).map(function(line) {
             return line.trim();
-        }).filter(function(line) {
-            return line;
         }).map(function(rule) {
             var data = rule.split(/->|→/);
             if (data.length < 2 || !data[0]) {
@@ -43,7 +41,6 @@ var firstFollow = (function() {
 
     var Grammar = function(str) {
         var that = this;
-        this.grammar = str;
         this.productionList = GetProductions(str);
         if (!this.productionList.length) {
             throw 'Empty grammar';
@@ -125,10 +122,8 @@ var firstFollow = (function() {
                 var symbol = prod.symbol;
                 var derivationList = prod.derivation;
 
-                if (!that.isNonTerminal(symbol)) {
-                    that.addToFirstSet(symbol, symbol);
-                }
-                else {
+
+
                     // set to true when the first derivation has epsilon in its first set,
                     // it remains true as long as the subsequent derivations also contain '' in their first sets.
                     var addEpsilon = false;
@@ -138,7 +133,7 @@ var firstFollow = (function() {
                         }
                         else {
                             if (index === 0 || addEpsilon) {
-                                var fSet = that.firstSet[derivation] || {};
+                                var fSet = that.firstSet[derivation] ;
 
                                 // only add epsilon to firt(X) if epsilon is in all k for X -> Y1, Y2...Yk
                                 addEpsilon = '' in fSet;
@@ -188,7 +183,7 @@ var firstFollow = (function() {
                     if (addEpsilon) {
                         that.addToFirstSet(symbol, '');
                     }
-                }
+
             });
         // we stop iterating and consider that the sets are complete when after a iteration nothing was added to them.
         } while(this._changed);
